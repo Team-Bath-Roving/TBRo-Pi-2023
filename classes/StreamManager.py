@@ -20,7 +20,7 @@ class SteamManager:
 		if LAPTOP_IP == "localhost":
 			self.sender = imagezmq.ImageSender()
 		else:
-			self.sender = imagezmq.ImageSender(connect_to=f"tcp://{LAPTOP_IP}:5003")
+			self.sender = imagezmq.ImageSender(connect_to=f"tcp://{LAPTOP_IP}:5555") # port has to be 5555
 		
 		self.streams = [
 			[name, VideoStream(i, usePiCamera=PiCam).start()] for name, i, PiCam in CAMS
@@ -37,7 +37,11 @@ class SteamManager:
 			frame = stream.read()
 
 			# Resize
-			# ***
+			if name == "Webcam":
+				sf = 0.4
+			else:
+				sf = 0.8
+			frame = cv2.resize(frame, (0,0,), fx=sf, fy=sf)
 
 			# Compress
 			frame = cv2.imencode(".jpg", frame, [int(cv2.IMWRITE_JPEG_QUALITY), self.JPEG_QUALITY])[1]
