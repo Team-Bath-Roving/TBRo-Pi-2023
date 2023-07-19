@@ -4,7 +4,7 @@ LAPTOP_IP = "localhost"
 
 # Camera information (name, index, PiCam?)
 CAMS = [
-	["Pi Cam", 0, True]
+	["Pi Cam", 0, False]
 ]
 
 # Level of compression

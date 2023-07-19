@@ -37,10 +37,11 @@ class SteamManager:
 			frame = stream.read()
 
 			# Resize
-			if name == "Webcam":
-				sf = 0.4
-			else:
-				sf = 0.8
+			sf = 1
+			# if name == "Webcam":
+			# 	sf = 0.4
+			# else:
+			# 	sf = 0.8
 			frame = cv2.resize(frame, (0,0,), fx=sf, fy=sf)
 
 			# Compress
